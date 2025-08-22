@@ -306,11 +306,11 @@ class Tackle:
         if not self.detection.is_fish_hooked():
             return
         if self.detection.is_retrieval_finished():
-            pag.press("space")
+            pag.press(self.cfg.Key.SPOON)
             sleep(LANDING_NET_DURATION)
             if self.detection.is_fish_captured():
                 return
-            pag.press("space")
+            pag.press(self.cfg.Key.SPOON)
             sleep(ANIMATION_DELAY)
 
         self.is_rare_event_occur()

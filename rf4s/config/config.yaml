@@ -7,6 +7,7 @@ KEY:
   COFFEE: 4
   DIGGING_TOOL: 5
   ALCOHOL: 6
+  SPOON: "`"
   MAIN_ROD: 1
   SPOD_ROD: 7
   QUIT: "CTRL-C"
@@ -283,6 +284,19 @@ PROFILE:
     RETRIEVAL_TIMEOUT: 256.0
     PRE_ACCELERATION: false
     POST_ACCELERATION: true
+  Bottom | c1 | Liyu Laker PM98H:
+    DESCRIPTION: "Copper Lake, 67:57."
+    LAUNCH_OPTIONS: ""
+    MODE: "bottom"
+    CAST_POWER_LEVEL: 3.0
+    CAST_DELAY: 4.0
+    POST_ACCELERATION: true
+    CHECK_DELAY: 6.0
+    CHECK_MISS_LIMIT: 10
+    PUT_DOWN_DELAY: 2.0
+    RANDOM_ROD_SELECTION: false
+    PULL_RIGHT_MOUSE: true
+    LAUNCH_OPTIONS: "-crl -R 0"
   Bottom | c6 | Royal Picker PM98H:
     DESCRIPTION: "Copper Lake, 67:57."
     LAUNCH_OPTIONS: ""
