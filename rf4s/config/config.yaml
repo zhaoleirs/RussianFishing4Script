@@ -50,7 +50,7 @@ BOT:
     EMAIL: "email@example.com"
     PASSWORD: "password"
     SMTP_SERVER: "smtp.gmail.com"
-    MIAO_CODE: ""
+    MIAO_CODE: "tjr9qbD"
     DISCORD_WEBHOOK_URL: ""
     TELEGRAM_BOT_TOKEN: ""
     TELEGRAM_CHAT_ID: -1
@@ -287,7 +287,7 @@ PROFILE:
     POST_ACCELERATION: true
   Bottom | c1 | Liyu Laker PM98H:
     DESCRIPTION: "Liyu Lake, 67:57."
-    LAUNCH_OPTIONS: "-crlFB -R 0"
+    LAUNCH_OPTIONS: "-crlFBM -R 0"
     MODE: "bottom"
     CAST_POWER_LEVEL: 2.5
     CAST_DELAY: 4.0
