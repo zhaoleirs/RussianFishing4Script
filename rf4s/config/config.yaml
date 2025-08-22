@@ -37,6 +37,7 @@ BOT:
   PAUSE_DELAY: 1800
   PAUSE_DURATION: 600
   CLICK_LOCK: false
+  LOOP_ACTIVE_WINDOW: true
   KEEPNET:
     CAPACITY: 100
     SCREENSHOT_EVENTS: ["fish", "card", "gift"]

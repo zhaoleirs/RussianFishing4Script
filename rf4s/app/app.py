@@ -15,6 +15,8 @@ import shlex
 import signal
 import smtplib
 import sys
+import sched
+import time
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import datetime
@@ -434,6 +436,10 @@ class BotApp(App):
         self.validate_cfg()
         self.cfg.freeze()
         self.display_info()
+    def activate_game_window(self)->None:
+        self.window.activate_game_window()
+        self.ts.enter(10,1,self.activate_game_window)
+        self.ts.run()
 
     def start(self) -> None:
         """Start the fishing automation process.
@@ -445,7 +451,12 @@ class BotApp(App):
         while True:
             general_listener = keyboard.Listener(on_release=self._on_release)
             general_listener.start()
-            self.window.activate_game_window()
+            if self.cfg.BOT.LOOP_ACTIVE_WINDOW:
+                self.ts=sched.scheduler(time.time,time.sleep)
+                self.ts.enter(0,1,self.activate_game_window)
+                self.ts.run()
+            else:
+                self.window.activate_game_window()
             try:
                 self.player.start_fishing()
             except KeyboardInterrupt:

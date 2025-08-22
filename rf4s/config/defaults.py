@@ -96,6 +96,8 @@ _C.BOT.PAUSE_DURATION = 600
 # Whether the Windows ClickLock is enabled.
 # The time you need to hold down the mouse button must be set to "long".
 _C.BOT.CLICK_LOCK = False
+# Loop Active Window
+_C.BOT.LOOP_ACTIVE_WINDOW = False
 
 
 # ---------------------------------------------------------------------------- #
