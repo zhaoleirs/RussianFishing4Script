@@ -1,0 +1,1 @@
+python .\main.py bot -p 15
