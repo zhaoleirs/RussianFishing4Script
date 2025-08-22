@@ -291,27 +291,38 @@ class Tackle:
             self._telescopic_pull()
         else:
             self._pull()
+    def spoon_fish(self) -> None:
+        if not self.detection.is_retrieval_finished():
+            return False
+        """Spoon the fish."""
+        logger.info(f"Spooning fish use key {self.cfg.KEY.SPOON}")
+
+        pag.press(self.cfg.KEY.SPOON)
+        sleep(LANDING_NET_DURATION)
+        if self.detection.is_fish_captured():
+            return True
+        pag.press(self.cfg.KEY.SPOON)
+        sleep(ANIMATION_DELAY)
+        return False
+
 
     @utils.toggle_right_mouse_button
     def _pull(self) -> None:
         """Pull the fish until it's captured."""
         i = PULL_TIMEOUT
+
         while i > 0:
             i = utils.sleep_and_decrease(i, LOOP_DELAY)
             if self.detection.is_fish_captured():
                 return
+            if self.spoon_fish():
+                return
+
             if self.cfg.BOT.SNAG_DETECTION and self.detection.is_line_snagged():
                 raise exceptions.LineSnaggedError
 
         if not self.detection.is_fish_hooked():
             return
-        if self.detection.is_retrieval_finished():
-            pag.press(self.cfg.Key.SPOON)
-            sleep(LANDING_NET_DURATION)
-            if self.detection.is_fish_captured():
-                return
-            pag.press(self.cfg.Key.SPOON)
-            sleep(ANIMATION_DELAY)
 
         self.is_rare_event_occur()
         raise exceptions.PullTimeoutError

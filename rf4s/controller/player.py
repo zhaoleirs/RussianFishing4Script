@@ -102,6 +102,8 @@ class Player:
         self.mouse_pressed = False
         self.shift_pressed = False
         self.using_spod_rod = False
+        self.right_mouse_pressed = False
+
         self.skip_cast = self.cfg.ARGS.SKIP_CAST
 
     def start_fishing(self,window) -> None:
@@ -145,15 +147,28 @@ class Player:
         pag.keyUp("shift")
         self.shift_pressed = False
 
+    def hold_down_right_mouse_button(self):
+        pag.mouseDown(button="right")
+        self.right_mouse_pressed = True
+
+    def release_right_mouse_button(self):
+        pag.mouseUp(button="right")
+        self.right_mouse_pressed = False
+
     @contextmanager
-    def hold_keys(self, mouse, shift, reset=False):
+    def hold_keys(self, mouse, shift, reset=False,right=False):
+
         mouse_pressed_before = self.mouse_pressed
         shift_pressed_before = self.shift_pressed
+        right_pressed_before = self.right_mouse_pressed
         if mouse and not self.mouse_pressed:
             self.hold_down_left_mouse_button()
         if not mouse and self.mouse_pressed:
             self.release_left_mouse_button()
-
+        if not right and self.right_mouse_pressed:
+            self.release_right_mouse_button()
+        if right and not self.right_mouse_pressed:
+            self.hold_down_right_mouse_button()
         if shift and not self.shift_pressed:
             self.hold_down_shift_key()
         if not shift and self.shift_pressed:
@@ -173,6 +188,12 @@ class Player:
             self.release_shift_key()
         if not self.shift_pressed and shift_pressed_before:
             self.hold_down_shift_key()
+
+        if self.right_mouse_pressed and not right_pressed_before:
+            self.release_right_mouse_button()
+        if not self.right_mouse_pressed and right_pressed_before:
+            self.hold_down_right_mouse_button()
+
 
     @contextmanager
     def loop_restart_handler(self):
@@ -566,7 +587,7 @@ class Player:
         if self.cfg.ARGS.ELECTRO:
             self.tackle.enable_electro_mode()
 
-        with self.hold_keys(mouse=True, shift=self.cfg.PROFILE.POST_ACCELERATION):
+        with self.hold_keys(mouse=True, shift=self.cfg.PROFILE.POST_ACCELERATION,right=True):
             while True:
                 with self.error_handler():
                     self.tackle.retrieve_with_fish()
@@ -606,7 +627,7 @@ class Player:
         if not self.detection.is_fish_hooked():
             return
         self._drink_alcohol()
-        with self.hold_keys(mouse=True, shift=self.cfg.PROFILE.POST_ACCELERATION):
+        with self.hold_keys(mouse=True, shift=self.cfg.PROFILE.POST_ACCELERATION,right=True):
             while True:
                 with self.error_handler():
                     self.tackle.pull()
@@ -823,7 +844,8 @@ class Player:
     def handle_fish(self) -> None:
         if not self.detection.is_fish_captured():
             return
-
+        
+        self.right_mouse_pressed = False
         logger.info("Handling fish")
         with self.hold_keys(mouse=False, shift=False):
             self._handle_fish()

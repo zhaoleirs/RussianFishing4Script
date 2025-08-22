@@ -30,7 +30,7 @@ BOT:
   SMTP_VERIFICATION: true
   SNAG_DETECTION: true
   SPOOLING_DETECTION: true
-  SPOOL_CONFIDENCE: 0.98
+  SPOOL_CONFIDENCE: 0.92
   RANDOM_CAST_PROBABILITY: 0.25
   SPOD_ROD_RECAST_DELAY: 1800
   LURE_CHANGE_DELAY: 1800
@@ -286,7 +286,7 @@ PROFILE:
     PRE_ACCELERATION: false
     POST_ACCELERATION: true
   Bottom | c1 | Liyu Laker PM98H:
-    DESCRIPTION: "Liyu Lake, 67:57."
+    DESCRIPTION: "z-Liyu Lake, 67:57."
     LAUNCH_OPTIONS: "-crlmM -FB -R 0"
     MODE: "bottom"
     CAST_POWER_LEVEL: 2.5
@@ -298,19 +298,20 @@ PROFILE:
     RANDOM_ROD_SELECTION: true
     PULL_RIGHT_MOUSE: true
   Bottom | c6 | Royal Picker PM98H:
-    DESCRIPTION: "Copper Lake, 67:57."
-    LAUNCH_OPTIONS: ""
+    DESCRIPTION: "z-Copper Lake, 67:57."
+    LAUNCH_OPTIONS: "-crlmM -FB -R 0"
     MODE: "bottom"
-    CAST_POWER_LEVEL: 2.0
+    CAST_POWER_LEVEL: 2.5
     CAST_DELAY: 4.0
     POST_ACCELERATION: false
     CHECK_DELAY: 16.0
     CHECK_MISS_LIMIT: 10
     PUT_DOWN_DELAY: 2.0
     RANDOM_ROD_SELECTION: true
+    PULL_RIGHT_MOUSE: true
   Bottom | c12 | Royal Picker PM98H:
     DESCRIPTION: "Copper Lake, 61:53."
-    LAUNCH_OPTIONS: ""
+    LAUNCH_OPTIONS: "-crlmM -FB -R 0"
     MODE: "bottom"
     CAST_POWER_LEVEL: 3.5
     CAST_DELAY: 4.0
@@ -319,6 +320,7 @@ PROFILE:
     CHECK_MISS_LIMIT: 16
     PUT_DOWN_DELAY: 2.0
     RANDOM_ROD_SELECTION: true
+    PULL_RIGHT_MOUSE: true
   Bottom | c17 | Fortuna Carp 360XH:
     DESCRIPTION: "Old burg Lake, 21:67."
     LAUNCH_OPTIONS: ""
