@@ -24,7 +24,7 @@ CRITICAL_COLOR = (206, 56, 21)
 WARNING_COLOR = (227, 149, 23)
 WHITE = (255, 255, 255)
 
-MIN_GRAY_SCALE_LEVEL = 160
+MIN_GRAY_SCALE_LEVEL = 150
 YELLOW_FRICTION_BRAKE = (200, 214, 63)
 ORANGE_FRICTION_BRAKE = (229, 188, 0)
 RED_FRICTION_BRAKE = (206, 56, 21)
@@ -130,7 +130,7 @@ class Detection:
             self.is_fish_hooked = partial(
                 self._get_image_box,
                 image="fish_icon",
-                confidence="0.9",
+                confidence="0.86",
             )
 
         self.bait_icon_reference_img = Image.open(self.image_dir / "bait_icon.png")

@@ -104,7 +104,8 @@ class Player:
         self.using_spod_rod = False
         self.skip_cast = self.cfg.ARGS.SKIP_CAST
 
-    def start_fishing(self) -> None:
+    def start_fishing(self,window) -> None:
+        self.window = window
         """Start the main fishing loop with the specified fishing strategy."""
         if self.cfg.ARGS.FRICTION_BRAKE:
             # Define here because we cannot start a process twice (same instance)
@@ -255,6 +256,7 @@ class Player:
                     self.cast_spod_rod()
 
                 self.refill_stats()
+                self.window.activate_game_window()
                 logger.info("Checking rod %s", self.tackle_idx + 1)
                 pag.press(str(self.cfg.KEY.BOTTOM_RODS[self.tackle_idx]))
                 sleep(ANIMATION_DELAY)

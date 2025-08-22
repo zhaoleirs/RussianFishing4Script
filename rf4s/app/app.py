@@ -10,6 +10,7 @@ Provides core functionality for:
 
 import argparse
 import os
+import threading
 import random
 import shlex
 import signal
@@ -436,10 +437,6 @@ class BotApp(App):
         self.validate_cfg()
         self.cfg.freeze()
         self.display_info()
-    def activate_game_window(self)->None:
-        self.window.activate_game_window()
-        self.ts.enter(10,1,self.activate_game_window)
-        self.ts.run()
 
     def start(self) -> None:
         """Start the fishing automation process.
@@ -448,17 +445,12 @@ class BotApp(App):
         registers key listeners, and begins the fishing automation.
         Handles termination and displays result.
         """
+        self.window.activate_game_window()
         while True:
             general_listener = keyboard.Listener(on_release=self._on_release)
             general_listener.start()
-            if self.cfg.BOT.LOOP_ACTIVE_WINDOW:
-                self.ts=sched.scheduler(time.time,time.sleep)
-                self.ts.enter(0,1,self.activate_game_window)
-                self.ts.run()
-            else:
-                self.window.activate_game_window()
             try:
-                self.player.start_fishing()
+                self.player.start_fishing(self.window)
             except KeyboardInterrupt:
                 if not self.paused:
                     break
