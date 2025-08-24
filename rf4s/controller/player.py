@@ -845,9 +845,8 @@ class Player:
         if not self.detection.is_fish_captured():
             return
         
-        self.right_mouse_pressed = False
         logger.info("Handling fish")
-        with self.hold_keys(mouse=False, shift=False):
+        with self.hold_keys(mouse=False, shift=False,right=False):
             self._handle_fish()
             sleep(add_jitter(ANIMATION_DELAY))
             # Avoid wrong cast hour

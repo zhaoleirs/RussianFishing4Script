@@ -315,6 +315,8 @@ class Tackle:
             i = utils.sleep_and_decrease(i, LOOP_DELAY)
             if self.detection.is_fish_captured():
                 return
+            if not self.detection.is_fish_hooked():
+                return
             if self.spoon_fish():
                 return
 
