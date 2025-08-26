@@ -1,1 +1,1 @@
-python .\main.py bot -p 15
+python .\main.py bot -p 18

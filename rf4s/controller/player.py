@@ -510,6 +510,9 @@ class Player:
             with self.hold_keys(mouse=False, shift=False, reset=True):
                 sleep(LOWER_TACKLE_DELAY)
                 self._drink_coffee()
+                self.release_left_mouse_button()
+                self.release_right_mouse_button()
+                self.release_shift_key()
                 if self.cfg.PROFILE.MODE != "telescopic":
                     self._retrieve_fish(save=False)
         except exceptions.DryMixNotChosenError:
